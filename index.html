@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFi-кошельки: Полный гайд 2025</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #a855f7;
+            --accent-light: #d946ef;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --surface: #1e293b;
+            --text-light: #e2e8f0;
+            --text-dark: #1e293b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f35 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "💼";
+            font-size: 1.8rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 1.8rem;
+            border-radius: 0.5rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(168, 85, 247, 0.1);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wallet-icon {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .wallet-icon:nth-child(2) {
+            animation-delay: 1s;
+            width: 150px;
+            height: 150px;
+            top: 50px;
+            right: 50px;
+        }
+
+        .wallet-icon:nth-child(3) {
+            animation-delay: 2s;
+            width: 150px;
+            height: 150px;
+            bottom: 50px;
+            left: 50px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(20px); }
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            border-top: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent);
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .feature-card p {
+            color: #cbd5e1;
+            margin-bottom: 1rem;
+        }
+
+        .pros, .cons {
+            margin-top: 1.5rem;
+        }
+
+        .pros h4, .cons h4 {
+            color: var(--success);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cons h4 {
+            color: var(--warning);
+        }
+
+        .pros ul, .cons ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .pros li::before {
+            content: "✓ ";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .cons li::before {
+            content: "⚠ ";
+            color: var(--warning);
+            margin-right: 0.5rem;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(100, 116, 139, 0.3);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        tr:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .wallet-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .wallet-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .wallet-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.25);
+        }
+
+        .wallet-icon-small {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .wallet-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .wallet-type {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .wallet-features {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .wallet-features li {
+            padding: 0.5rem 0;
+            color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .wallet-features li::before {
+            content: "•";
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-item {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--accent);
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .faq-toggle {
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            padding: 0 1.5rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+
+        .security-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .tip-box h4 {
+            color: var(--success);
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .final-cta {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons-final {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 1px solid rgba(100, 116, 139, 0.2);
+            padding: 4rem 2rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(100, 116, 139, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .wallet-icon {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+
+            .wallet-icon:nth-child(2) {
+                width: 90px;
+                height: 90px;
+            }
+
+            .wallet-icon:nth-child(3) {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">DeFi Wallets</div>
+            <nav>
+                <a href="#what-is">Что это?</a>
+                <a href="#types">Типы</a>
+                <a href="#wallets">Кошельки</a>
+                <a href="#security">Безопасность</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>DeFi-кошельки: Ваши ключи, ваша криптовалюта</h1>
+            <p>Полный гайд по децентрализованным кошелькам: что это, как работают, чем отличаются от бирж и как выбрать подходящий. Разбираем популярные решения 2025 года.</p>
+            <div class="cta-buttons">
+                <a href="#what-is" class="btn btn-primary">Что такое DeFi-кошелёк</a>
+                <a href="#wallets" class="btn btn-secondary">Список кошельков</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="wallet-icon">💼</div>
+            <div class="wallet-icon">🔐</div>
+            <div class="wallet-icon">⛓️</div>
+        </div>
+    </section>
+
+    <!-- What is DeFi Wallet -->
+    <section id="what-is">
+        <h2>Что такое DeFi-кошелёк и зачем он нужен</h2>
+        <p class="section-subtitle">DeFi-кошелёк — это инструмент для самостоятельного хранения и управления криптовалютой без посредников. В отличие от кошельков централизованных бирж (CEX), где биржа контролирует ваши средства, DeFi-кошельки дают полный контроль над приватными ключами.</p>
+        
+        <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1.5rem;">Основные возможности DeFi-кошельков</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🔑 Полный контроль (self-custody)</h3>
+                <p>Приватные ключи хранятся на вашем устройстве. Никто не может заблокировать или изъять средства.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌐 Прямой доступ к DeFi</h3>
+                <p>Подключайтесь к Uniswap, Aave, Curve, PancakeSwap и тысячам других протоколов одним кликом.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎭 Анонимность</h3>
+                <p>Не требуется KYC или предоставление личных данных — достаточно создать кошелёк и сохранить seed-фразу.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⛓️ Мультичейн-поддержка</h3>
+                <p>Управляйте активами в нескольких сетях из одного интерфейса.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DeFi vs CEX -->
+    <section>
+        <h2>DeFi-кошельки vs Централизованные биржи</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th style="color: var(--primary);">DeFi-кошельки</th>
+                        <th style="color: var(--warning);">Биржи (CEX)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Владение активами</strong></td>
+                        <td>✓ Вы владеете ключами и средствами</td>
+                        <td>✗ Биржа контролирует активы</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KYC/Верификация</strong></td>
+                        <td>✓ Не требуется</td>
+                        <td>✗ Обязательна</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Доступ к DeFi</strong></td>
+                        <td>✓ Полный доступ</td>
+                        <td>✗ Только торговля</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Комиссии</strong></td>
+                        <td>✓ Только gas-комиссии</td>
+                        <td>✗ Высокие комиссии (5-10%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Безопасность</strong></td>
+                        <td>✓ Зависит от пользователя</td>
+                        <td>✗ Риск взлома биржи</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tip-box" style="margin-top: 2rem;">
+            <h4>⚠️ Важно</h4>
+            <p>DeFi-кошельки дают свободу и контроль, но требуют ответственности за хранение приватных ключей. Если потеряете seed-фразу — доступ к средствам утрачен навсегда.</p>
+        </div>
+    </section>
+
+    <!-- Types of Wallets -->
+    <section id="types">
+        <h2>Какие бывают DeFi-кошельки</h2>
+        
+        <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1.5rem; font-size: 1.5rem;">1. 🔐 Аппаратные кошельки (Hardware Wallets)</h3>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Ledger Nano X</h3>
+                <p>Поддержка 5500+ токенов, Bluetooth, интеграция с MetaMask</p>
+                <div class="pros">
+                    <h4>Преимущества</h4>
+                    <ul>
+                        <li>Максимальная защита</li>
+                        <li>Bluetooth подключение</li>
+                        <li>Много поддерживаемых токенов</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="feature-card">
+                <h3>Trezor Model T</h3>
+                <p>Open source, сенсорный экран, 1800+ токенов</p>
+                <div class="pros">
+                    <h4>Преимущества</h4>
+                    <ul>
+                        <li>Open source</li>
+                        <li>Сенсорный экран</li>
+                        <li>Высокая безопасность</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="feature-card">
+                <h3>SafePal S1</h3>
+                <p>Бюджетный вариант с поддержкой 100+ блокчейнов</p>
+                <div class="pros">
+                    <h4>Преимущества</h4>
+                    <ul>
+                        <li>Доступная цена ($50)</li>
+                        <li>100+ блокчейнов</li>
+                        <li>Простой интерфейс</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="color: var(--accent); margin-top: 3rem; margin-bottom: 1.5rem; font-size: 1.5rem;">2. 📱 Программные (горячие) кошельки</h3>
+        <p class="section-subtitle">Удобны для ежедневных транзакций и работы с DeFi. Включают браузерные расширения, мобильные приложения и десктопные программы.</p>
+        
+        <div class="wallet-list">
+            <div class="wallet-card">
+                <div class="wallet-icon-small">🦊</div>
+                <h3>MetaMask</h3>
+                <div class="wallet-type">Браузерное расширение</div>
+                <div class="wallet-features">
+                    <li>Лидер для Ethereum и EVM-сетей</li>
+                    <li>Интеграция с тысячами dApps</li>
+                    <li>Встроенные свопы</li>
+                    <li>Cross-chain bridge</li>
+                </div>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-icon-small">👻</div>
+                <h3>Phantom</h3>
+                <div class="wallet-type">Браузерное расширение</div>
+                <div class="wallet-features">
+                    <li>Лучший для Solana</li>
+                    <li>NFT поддержка</li>
+                    <li>DeFi интеграции</li>
+                    <li>Мультичейн</li>
+                </div>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-icon-small">🐰</div>
+                <h3>Rabby Wallet</h3>
+                <div class="wallet-type">Браузерное расширение</div>
+                <div class="wallet-features">
+                    <li>Альтернатива MetaMask</li>
+                    <li>Автопереключение сетей</li>
+                    <li>Улучшенный UX</li>
+                    <li>Мультичейн</li>
+                </div>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-icon-small">💎</div>
+                <h3>Trust Wallet</h3>
+                <div class="wallet-type">Мобильное приложение</div>
+                <div class="wallet-features">
+                    <li>65+ блокчейнов</li>
+                    <li>Встроенный DEX</li>
+                    <li>Стейкинг</li>
+                    <li>Покупка криптой</li>
+                </div>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-icon-small">🌈</div>
+                <h3>Rainbow</h3>
+                <div class="wallet-type">Мобильное приложение</div>
+                <div class="wallet-features">
+                    <li>Красивый дизайн</li>
+                    <li>Удобен для NFT</li>
+                    <li>EVM-сети</li>
+                    <li>Интуитивный интерфейс</li>
+                </div>
+            </div>
+            <div class="wallet-card">
+                <div class="wallet-icon-small">🏪</div>
+                <h3>Coinbase Wallet</h3>
+                <div class="wallet-type">Мобильное приложение</div>
+                <div class="wallet-features">
+                    <li>Простой для новичков</li>
+                    <li>Интеграция с Coinbase</li>
+                    <li>Хорошая документация</li>
+                    <li>Multi-chain</li>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Wallets -->
+    <section id="wallets">
+        <h2>Топ DeFi-кошельков: Сравнение и особенности</h2>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Кошелёк</th>
+                        <th>Тип</th>
+                        <th>Сети</th>
+                        <th>Функции</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MetaMask</strong></td>
+                        <td>Браузер/Мобильный</td>
+                        <td>Ethereum, BSC, Polygon, Arbitrum</td>
+                        <td>Свопы, Bridge, DeFi-интеграция</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Trust Wallet</strong></td>
+                        <td>Мобильный</td>
+                        <td>65+ блокчейнов</td>
+                        <td>DEX, Стейкинг, Фиат-ввод</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ledger Nano X</strong></td>
+                        <td>Аппаратный</td>
+                        <td>5500+ токенов</td>
+                        <td>Максимальная безопасность</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phantom</strong></td>
+                        <td>Браузер/Мобильный</td>
+                        <td>Solana, Ethereum, Polygon</td>
+                        <td>NFT, Стейкинг, DeFi</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coinbase Wallet</strong></td>
+                        <td>Мобильный</td>
+                        <td>Ethereum, Polygon, Base</td>
+                        <td>Простота, для новичков</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Security -->
+    <section id="security">
+        <h2>Как защитить свои средства</h2>
+        <p class="section-subtitle">Основные правила безопасности при работе с DeFi-кошельками</p>
+        
+        <div class="security-tips">
+            <div class="tip-box">
+                <h4>🔑 Никогда не делитесь seed-фразой</h4>
+                <p>Это полный доступ к вашим средствам. Записывайте на бумаге, храните в сейфе.</p>
+            </div>
+            <div class="tip-box">
+                <h4>💾 Hardware для крупных сумм</h4>
+                <p>Ledger и Trezor защищают от онлайн-угроз. Используйте для хранения > $10,000.</p>
+            </div>
+            <div class="tip-box">
+                <h4>✓ Проверяйте адреса</h4>
+                <p>Вирусы подменяют адреса. Сверяйте первые и последние символы.</p>
+            </div>
+            <div class="tip-box">
+                <h4>🔄 Обновляйте ПО</h4>
+                <p>Старые версии уязвимы для эксплойтов. Проверяйте обновления регулярно.</p>
+            </div>
+            <div class="tip-box">
+                <h4>⚡ Осторожно с dApps</h4>
+                <p>Подключайтесь только к проверенным протоколам. Отзывайте approvals после использования.</p>
+            </div>
+            <div class="tip-box">
+                <h4>👛 Несколько кошельков</h4>
+                <p>Один для хранения (cold), другой для транзакций (hot).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <h2>Частые вопросы</h2>
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Чем DeFi-кошелёк отличается от кошелька на бирже?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>DeFi-кошелёк даёт полный контроль над ключами, биржа контролирует ваши средства. С DeFi-кошельком вы напрямую работаете с протоколами без посредников.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли потерять средства?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, если потеряете seed-фразу или станете жертвой фишинга. Без seed-фразы восстановление невозможно. Поэтому храните её очень осторожно.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Какой кошелёк лучше для новичков?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Trust Wallet или Coinbase Wallet — простой интерфейс, встроенные гайды и поддержка. Они идеальны для первых шагов в криптовалютном мире.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Нужно ли платить за кошелёк?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Программные кошельки бесплатны. Аппаратные стоят $50–$200. Дополнительно платите только gas-комиссии сети при проведении транзакций.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Безопасно ли хранить всю крипту в одном кошельке?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Лучше разделить: hardware для хранения основных средств, software для повседневных операций. Это снижает риск полной потери при взломе горячего кошелька.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли использовать один кошелёк для разных сетей?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, большинство современных кошельков поддерживают мультичейн (MetaMask, Trust Wallet, Rabby). Они позволяют управлять активами в разных блокчейнах из одного интерфейса.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Можно ли использовать DeFi-кошелёк для NFT?</span>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Да, MetaMask, Trust Wallet, Phantom, Rainbow отлично подходят для NFT. Они интегрированы с популярными NFT-маркетплейсами как OpenSea и другие.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Начните пользоваться DeFi-кошельками сегодня</h2>
+        <p>Изучите наши подробные гайды по настройке, безопасности и работе с DeFi-протоколами. Возьмите контроль над своими активами.</p>
+        <div class="cta-buttons-final">
+            <button class="btn btn-primary" onclick="alert('Гайд: Установка MetaMask скоро будет доступен')">Гайд: Установка MetaMask</button>
+            <button class="btn btn-secondary" onclick="alert('Гайд: Как купить крипту скоро будет доступен')">Купить первую крипту</button>
+            <button class="btn btn-primary" onclick="document.getElementById('wallets').scrollIntoView();">Сравнить кошельки</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>💼 Популярные кошельки</h4>
+                <ul>
+                    <li><a href="#wallets">MetaMask</a></li>
+                    <li><a href="#wallets">Trust Wallet</a></li>
+                    <li><a href="#wallets">Ledger</a></li>
+                    <li><a href="#wallets">Phantom</a></li>
+                    <li><a href="#wallets">Coinbase Wallet</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>📚 Обучение</h4>
+                <ul>
+                    <li><a href="#what-is">Что такое DeFi</a></li>
+                    <li><a href="#types">Типы кошельков</a></li>
+                    <li><a href="#security">Безопасность</a></li>
+                    <li><a href="#faq">Частые вопросы</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>⛓️ Блокчейны</h4>
+                <ul>
+                    <li><a href="#">Ethereum</a></li>
+                    <li><a href="#">BSC (Binance Smart Chain)</a></li>
+                    <li><a href="#">Polygon</a></li>
+                    <li><a href="#">Solana</a></li>
+                    <li><a href="#">Arbitrum</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>🔗 Ресурсы</h4>
+                <ul>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Новости DeFi</a></li>
+                    <li><a href="#">Сообщество</a></li>
+                    <li><a href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 DeFi Wallets Guide. Материалы носят информационный характер и не являются инвестиционной рекомендацией. Всегда проводите собственное исследование.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Smooth navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .wallet-card, .tip-box').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
